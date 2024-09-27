@@ -1,1 +1,1 @@
-# leetcode proble
+# leetcode problem

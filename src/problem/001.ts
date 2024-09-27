@@ -28,6 +28,9 @@ function twoSum(nums: number[], target: number): number[] | undefined {
     numToIndex[nums[i]] = i;
   }
 }
+const nums = [2, 7, 11, 15];
+const target = 9;
+console.log(twoSum(nums, target));
 
 // Constraints:
 

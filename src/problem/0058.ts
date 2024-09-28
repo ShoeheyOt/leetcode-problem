@@ -31,8 +31,9 @@
 
 function lengthOfLastWord(s: string): number {
   const sToArr = s.trim().split(" ");
-  return sToArr[sToArr.length - 1].split("").length;
+  return sToArr[sToArr.length - 1].length;
 }
 const s = "   fly me   to   the moon  ";
 const str = "Hello World";
 console.log(lengthOfLastWord(s));
+console.log(lengthOfLastWord(str));

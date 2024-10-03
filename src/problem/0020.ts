@@ -39,24 +39,29 @@
 // s consists of parentheses only '()[]{}'.
 
 function isValid(s: string): boolean {
-  const parenthesis: { [key: string]: number } = {
-    "(": 0,
-    "{": 0,
-    "[": 0,
+  const stack: string[] = [];
+  const pairs: { [key: string]: string } = {
+    ")": "(",
+    "}": "{",
+    "]": "[",
   };
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] === "(" || s[i] === "{" || s[i] === "[") {
-      parenthesis[s[i]]++;
-    }
-    if (s[i] === ")") {
-      parenthesis["("] == 1 ? (parenthesis["("] = 2) : (parenthesis["("] = 1);
-    }
-    if (s[i] === "]") {
-      parenthesis["["] == 1 ? (parenthesis["["] = 2) : (parenthesis["["] = 1);
-    }
-    if (s[i] === "}") {
-      parenthesis["{"] == 1 ? (parenthesis["{"] = 2) : (parenthesis["{"] = 1);
+
+  for (let char of s) {
+    if (char in pairs) {
+      // If it's a closing bracket, check if the stack has a matching opening bracket
+      if (!stack.length || stack.pop() !== pairs[char]) {
+        return false;
+      }
+    } else {
+      // If it's an opening bracket, push it onto the stack
+      stack.push(char);
     }
   }
-  return Object.values(parenthesis).filter((p) => p == 1).length >= 1 ? false : true;
+
+  // After iterating through all characters, if the stack is empty, all brackets were matched correctly
+  return !stack.length;
 }
+const test = "{}()";
+const s = "([)]";
+console.log(isValid(s));
+console.log(test);

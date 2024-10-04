@@ -31,3 +31,6 @@
 function getConcatenation(nums: number[]): number[] {
   return [...nums, ...nums];
 }
+
+const nums1 = [1, 2, 1];
+console.log(getConcatenation(nums1));

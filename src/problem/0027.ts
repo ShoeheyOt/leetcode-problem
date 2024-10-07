@@ -34,6 +34,7 @@
 //
 // Input: nums = [0,1,2,2,3,0,4,2], val = 2
 // Output: 5, nums = [0,1,4,0,3,_,_,_]
+
 // Explanation: Your function should return k = 5, with the first five elements of nums containing 0, 0, 1, 3, and 4.
 // Note that the five elements can be returned in any order.
 // It does not matter what you leave beyond the returned k (hence they are underscores).
@@ -44,17 +45,20 @@
 // 0 <= nums.length <= 100
 // 0 <= nums[i] <= 50
 // 0 <= val <= 100
-interface returnVals {
-  count: number;
-  restArr: (number | string)[];
-}
-function removeElement(nums: number[], val: number): returnVals {
-  let count = 0;
-  nums.forEach((num) => {
-    num === val && count++;
-  });
 
-  const restArr: (number | string)[] = nums.map((num) => (num === val ? "_" : num)).sort();
-
-  return { count, restArr };
+// What I need to do here is to modify params array to keep only non-target val, and return the number of the element
+// the key is to modify original array, not creating a new one
+function removeElement(nums: number[], val: number): number {
+  let k = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== val) {
+      nums[k] = nums[i];
+      k++;
+    }
+  }
+  return k;
 }
+
+const nums = [2, 3, 3, 2];
+const val = 3;
+console.log(removeElement(nums, val));

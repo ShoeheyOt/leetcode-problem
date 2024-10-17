@@ -22,12 +22,16 @@
 //
 
 function addDigits(num: number): number {
-  while (num >= 10) {
-    num = String(num)
-      .split("")
-      .reduce((sum, digit) => sum + parseInt(digit), 0);
-  }
-  return num;
+  // while (num >= 10) {
+  //   num = String(num)
+  //     .split("")
+  //     .reduce((sum, digit) => sum + parseInt(digit), 0);
+  // }
+  // return num;
+
+  if (num == 0) return num;
+
+  return 1 + ((num - 1) % 9);
 }
 
 const num1 = 32;
@@ -35,3 +39,6 @@ console.log(addDigits(num1));
 
 const num2 = 4888987968767;
 console.log(addDigits(num2));
+
+const num3 = 99;
+console.log(addDigits(num3));
